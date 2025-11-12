@@ -17,4 +17,7 @@ public class SimpleServer {
 
         System.out.println("Сервер запущен на порту " + server.getAddress().getPort());
     }
+    
+    //
 }
+  
