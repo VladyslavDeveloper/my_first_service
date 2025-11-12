@@ -1,20 +1,17 @@
-# Используем Java 17 JDK
 FROM eclipse-temurin:17-jdk
 
-# Рабочая директория внутри контейнера
 WORKDIR /app
 
-# Копируем исходники
 COPY src/server/*.java .
 
-# Компилируем
-RUN javac SimpleServer.java MyHandler.java
+# Компилируем с учётом пакета
+RUN javac -d . SimpleServer.java MyHandler.java
 
-# Создаём исполняемый JAR с точкой входа SimpleServer
-RUN jar cfe SimpleServer.jar server.SimpleServer *.class
+# Создаём JAR с точкой входа
+RUN jar cfe SimpleServer.jar server.SimpleServer server/*.class
 
-# Обязательно: поддержка UTF-8
+# UTF-8
 ENV JAVA_TOOL_OPTIONS="-Dfile.encoding=UTF8"
 
-# Запуск сервера
+# Запуск
 CMD ["java","-jar","SimpleServer.jar"]
