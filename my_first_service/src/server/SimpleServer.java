@@ -12,6 +12,7 @@ public class SimpleServer {
         // Слушаем на всех интерфейсах, чтобы Render видел сервер
         HttpServer server = HttpServer.create(new InetSocketAddress("0.0.0.0", port), 0);
 
+        // Контекст "/" отдаёт HTML
         server.createContext("/", new MyHandler());
         server.setExecutor(null);
         server.start();
