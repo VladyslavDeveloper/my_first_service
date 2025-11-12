@@ -8,10 +8,10 @@ WORKDIR /app
 COPY src/server/*.java .
 
 # Компилируем
-RUN javac SimpleService.java MyHandler.java
+RUN javac SimpleServer.java MyHandler.java
 
-# Создаём исполняемый JAR с точкой входа SimpleService
-RUN jar cfe SimpleServer.jar SimpleService *.class
+# Создаём исполняемый JAR с точкой входа SimpleServer
+RUN jar cfe SimpleServer.jar server.SimpleServer *.class
 
 # Обязательно: поддержка UTF-8
 ENV JAVA_TOOL_OPTIONS="-Dfile.encoding=UTF8"
